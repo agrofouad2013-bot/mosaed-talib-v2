@@ -1,1 +1,304 @@
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مساعد التلميذ الذكي</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        header {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .language button {
+            border: none;
+            padding: 8px 12px;
+            margin-left: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #667085;
+            font-size: 18px;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .field {
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d6dbe5;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .ask {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 14px 22px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .image {
+            background: #eef2f7;
+            border: none;
+            padding: 14px 22px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .answer {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f0f7ff;
+            border-right: 4px solid #2563eb;
+            border-radius: 10px;
+            line-height: 1.8;
+        }
+
+        .features {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .feature {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .feature h3 {
+            margin-top: 0;
+        }
+
+        @media(max-width:700px) {
+            .row,
+            .features {
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        🤖 مساعد <span>التلميذ الذكي</span>
+    </div>
+
+    <div class="language">
+        <button>العربية</button>
+        <button>FR</button>
+        <button>EN</button>
+    </div>
+</header>
+
+<main>
+
+    <section class="hero">
+        <h1>تعلّم بذكاء 🤖</h1>
+        <p>
+            اسأل، افهم، وتعلّم مع مساعدك الذكي
+        </p>
+    </section>
+
+    <section class="box">
+
+        <div class="row">
+
+            <div class="field">
+                <label>المستوى الدراسي</label>
+
+                <select>
+                    <option>اختر المستوى</option>
+                    <option>ابتدائي</option>
+                    <option>متوسط</option>
+                    <option>ثانوي</option>
+                    <option>جامعي</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>المادة</label>
+
+                <select>
+                    <option>اختر المادة</option>
+                    <option>الرياضيات</option>
+                    <option>الفيزياء</option>
+                    <option>العلوم</option>
+                    <option>اللغة العربية</option>
+                    <option>الفرنسية</option>
+                    <option>الإنجليزية</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="field">
+
+            <label>اكتب سؤالك أو التمرين</label>
+
+            <textarea id="question"
+            placeholder="مثال: اشرح لي هذا التمرين خطوة بخطوة..."></textarea>
+
+        </div>
+
+        <div class="buttons">
+
+            <button class="ask" onclick="askAI()">
+                🤖 اسأل المساعد الذكي
+            </button>
+
+            <button class="image">
+                📷 أضف صورة التمرين
+            </button>
+
+        </div>
+
+        <div id="answer" class="answer"></div>
+
+    </section>
+
+
+    <section class="features">
+
+        <div class="feature">
+            <h3>📚 شرح مبسط</h3>
+            <p>نفهمو الدرس خطوة بخطوة.</p>
+        </div>
+
+        <div class="feature">
+            <h3>📝 حل التمارين</h3>
+            <p>نشرح طريقة الحل، ماشي غير النتيجة.</p>
+        </div>
+
+        <div class="feature">
+            <h3>🌍 3 لغات</h3>
+            <p>العربية والفرنسية والإنجليزية.</p>
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+function askAI() {
+
+    let question =
+        document.getElementById("question").value;
+
+    let answer =
+        document.getElementById("answer");
+
+    answer.style.display = "block";
+
+    if (question.trim() === "") {
+
+        answer.innerHTML =
+        "✍️ اكتب السؤال أو التمرين أولاً.";
+
+    } else {
+
+        answer.innerHTML =
+        "<strong>🤖 مساعد التلميذ الذكي:</strong><br><br>" +
+        "تم استلام سؤالك بنجاح ✅<br>" +
+        "في المرحلة القادمة سنربط هذه الواجهة بالذكاء الاصطناعي الحقيقي باش يعطيك الحل والشرح خطوة بخطوة.";
+
+    }
+}
+
+</script>
+
+</body>
+</html>
